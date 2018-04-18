@@ -1,7 +1,9 @@
-package com.task.vodafone;
+package com.task.vodafone.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.task.vodafone.R;
 
 public class HomeActivity extends AppCompatActivity {
 
