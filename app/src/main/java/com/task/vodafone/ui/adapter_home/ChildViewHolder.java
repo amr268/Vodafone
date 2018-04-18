@@ -2,9 +2,9 @@ package com.task.vodafone.ui.adapter_home;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
 
 import com.task.vodafone.R;
+import com.task.vodafone.custom_view.BundleView;
 import com.task.vodafone.data.models.bundle.BundleModel;
 
 import butterknife.BindView;
@@ -12,14 +12,8 @@ import butterknife.ButterKnife;
 
 public class ChildViewHolder extends RecyclerView.ViewHolder {
 
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.tv_price)
-    TextView tvPrice;
-    @BindView(R.id.tv_type)
-    TextView tvType;
-    @BindView(R.id.tv_description)
-    TextView tvDescription;
+    @BindView(R.id.bundle_view)
+    BundleView bundleView;
 
     public ChildViewHolder(View itemView) {
         super(itemView);
@@ -27,9 +21,9 @@ public class ChildViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void onBind(BundleModel bundleModel) {
-        tvTitle.setText(bundleModel.getTitle());
-        tvPrice.setText(bundleModel.getPrice());
-        tvType.setText(bundleModel.getType());
-        tvDescription.setText(bundleModel.getDescription());
+        bundleView.setTitle(bundleModel.getTitle());
+        bundleView.setPrice(bundleModel.getPrice());
+        bundleView.setType(bundleModel.getType());
+        bundleView.setDescription(bundleModel.getDescription());
     }
 }
