@@ -6,6 +6,7 @@ import com.task.vodafone.data.models.bundle.BundleModel;
 import com.task.vodafone.di.activity.ActivityScope;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.inject.Inject;
 
@@ -27,10 +28,11 @@ public class HomeRepo {
         this.bundleMapper = bundleMapper;
     }
 
-    public void fetchBundles(ResultListener<ArrayList<BundleModel>> resultListener) {
+    public void fetchBundles(ResultListener<HashMap<String, ArrayList<BundleModel>>> resultListener) {
         disposable.add(
                 webServicesStore.fetchBundles()
                         .map(bundleMapper::toBundleModels)
+                        .map(bundleMapper::toBundleModelsMap)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(resultListener::onSuccess, resultListener::onError));

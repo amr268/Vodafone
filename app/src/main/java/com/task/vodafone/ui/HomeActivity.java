@@ -12,6 +12,7 @@ import com.task.vodafone.data.models.bundle.BundleModel;
 import com.task.vodafone.di.activity.ActivityModule;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.inject.Inject;
 
@@ -28,9 +29,9 @@ public class HomeActivity extends AppCompatActivity {
                 .plus(new ActivityModule(this))
                 .inject(this);
 
-        homeRepo.fetchBundles(new ResultListener<ArrayList<BundleModel>>() {
+        homeRepo.fetchBundles(new ResultListener<HashMap<String, ArrayList<BundleModel>>>() {
             @Override
-            public void onSuccess(ArrayList<BundleModel> data) {
+            public void onSuccess(HashMap<String, ArrayList<BundleModel>> data) {
                 Log.d("success", "done");
             }
 

@@ -3,6 +3,7 @@ package com.task.vodafone.data.models.bundle;
 import com.task.vodafone.di.activity.ActivityScope;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.inject.Inject;
 
@@ -26,5 +27,19 @@ public class BundleMapper {
         for (BundlesResponse.BundleResponse bundleResponse : bundleResponses)
             bundleModels.add(toBundleModel(bundleResponse));
         return bundleModels;
+    }
+
+    public HashMap<String, ArrayList<BundleModel>> toBundleModelsMap(ArrayList<BundleModel> bundleModels) {
+        HashMap<String, ArrayList<BundleModel>> bundlesMap = new HashMap<>();
+        for (BundleModel bundleModel : bundleModels) {
+            if (!bundlesMap.containsKey(bundleModel.getType())) {
+                ArrayList<BundleModel> list = new ArrayList<>();
+                list.add(bundleModel);
+                bundlesMap.put(bundleModel.getType(), list);
+            } else {
+                bundlesMap.get(bundleModel.getType()).add(bundleModel);
+            }
+        }
+        return bundlesMap;
     }
 }

@@ -1,48 +1,62 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 ext {
     //android
-    compileSdkVersion = 27
-    minSdkVersion = 17
-    targetSdkVersion = 27
-    versionCode = 1
-    versionName = "1.0"
+    compileSdkVersion  = 27
+    minSdkVersion      = 15
+    targetSdkVersion   = 27
+    versionCode        = 1
+    versionName        = "1.0"
     //dependencies
-    support = '27.1.1'
-    constrain = '1.1.0'
-    rxAndroid = '2.0.2'
-    rxJava = '2.1.12'
-    dagger = '2.12'
-    butterKnife = '8.8.1'
-    retrofit = '2.4.0'
-    okhttp = '2.7.2'
-    okhttp3 = '3.7.0'
-    gson = '2.4.0'
-    glide = '4.3.0'
-    timber = '4.5.1'
+    support            = '27.1.0'
+    constrain          = '1.0.2'
+    rxAndroid          = '2.0.2'
+    rxJava             = '2.1.12'
+    dagger             = '2.12'
+    butterKnife        = '8.8.1'
+    retrofit           = '1.9.0'
+    okhttp             = '2.7.2'
+    okhttp3            = '3.7.0'
+    gson               = '2.8.0'
+    glide              = '4.3.0'
+    timber             = '4.5.1'
     googlePlayServices = '11.8.0'
-    leakCanary = '1.5.4'
+    leakCanary         = '1.5.4'
 }
 
 android {
     compileSdkVersion 27
+
+
+
     defaultConfig {
-        applicationId "com.task.vodafone"
-        minSdkVersion 15
+        minSdkVersion 17
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
     }
 }
 
@@ -57,9 +71,18 @@ dependencies {
     implementation "com.android.support:recyclerview-v7:${support}"
     implementation "com.android.support.constraint:constraint-layout:${constrain}"
 
+    //arch component
+    implementation "android.arch.lifecycle:common-java8:1.1.1"
+
+    //log
+    implementation "com.jakewharton.timber:timber:${timber}"
+
     //rx android
     implementation "io.reactivex.rxjava2:rxandroid:${rxAndroid}"
     implementation "io.reactivex.rxjava2:rxjava:${rxJava}"
+    implementation "com.jakewharton.rxbinding2:rxbinding:2.0.0"
+    implementation "com.jakewharton.rxrelay2:rxrelay:2.0.0"
+    implementation "com.github.miguelbcr:RxPaparazzo:0.6.0-2.x"
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
 
     //Binds views
@@ -68,13 +91,9 @@ dependencies {
 
     //dependency injection
     implementation "com.google.dagger:dagger-android:${dagger}"
+    implementation "com.google.dagger:dagger-android-support:${dagger}"
     annotationProcessor "com.google.dagger:dagger-compiler:${dagger}"
-
-    // retrofit
-    implementation "com.squareup.retrofit2:retrofit:${retrofit}"
-
-    // gson
-    implementation "com.squareup.retrofit2:converter-gson:${gson}"
+    annotationProcessor "com.google.dagger:dagger-android-processor:${dagger}"
 
     //testing
     testImplementation 'junit:junit:4.12'
