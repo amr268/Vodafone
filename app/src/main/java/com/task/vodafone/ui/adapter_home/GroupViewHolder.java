@@ -46,19 +46,17 @@ public class GroupViewHolder extends RecyclerView.ViewHolder {
         isExpand = false;
     }
 
-    @OnClick(R.id.iv_expand)
+    @OnClick({R.id.iv_expand, R.id.cardView})
     public void onExpandClick(View view) {
         if (!isExpand) {
             isExpand = true;
             ivExpand.setImageResource(R.drawable.ic_collapse);
             rvBundles.setVisibility(View.VISIBLE);
-            rvBundles.scrollToPosition(getAdapterPosition());
         } else {
             isExpand = false;
             ivExpand.setImageResource(R.drawable.ic_expand);
             rvBundles.setVisibility(View.GONE);
         }
-
     }
 
 }

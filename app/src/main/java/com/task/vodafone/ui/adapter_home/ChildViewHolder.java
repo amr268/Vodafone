@@ -22,7 +22,7 @@ public class ChildViewHolder extends RecyclerView.ViewHolder {
 
     public void onBind(BundleModel bundleModel) {
         bundleView.setTitle(bundleModel.getTitle());
-        bundleView.setPrice(bundleModel.getPrice());
+        bundleView.setPrice(bundleModel.getPrice()+" "+bundleModel.getCurrency());
         bundleView.setType(bundleModel.getType());
         bundleView.setDescription(bundleModel.getDescription());
     }
