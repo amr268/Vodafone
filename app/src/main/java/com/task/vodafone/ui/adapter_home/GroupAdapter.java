@@ -1,4 +1,4 @@
-package com.task.vodafone.ui.home;
+package com.task.vodafone.ui.adapter_home;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

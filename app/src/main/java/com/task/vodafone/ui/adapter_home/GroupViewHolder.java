@@ -1,4 +1,4 @@
-package com.task.vodafone.ui.home;
+package com.task.vodafone.ui.adapter_home;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,9 +25,9 @@ public class GroupViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.rv_bundles_child)
     RecyclerView rvBundles;
 
-    boolean isExpand;
+    private boolean isExpand;
 
-    Context context;
+    private Context context;
 
     public GroupViewHolder(View itemView, Context context) {
         super(itemView);
@@ -52,6 +52,7 @@ public class GroupViewHolder extends RecyclerView.ViewHolder {
             isExpand = true;
             ivExpand.setImageResource(R.drawable.ic_collapse);
             rvBundles.setVisibility(View.VISIBLE);
+            rvBundles.scrollToPosition(getAdapterPosition());
         } else {
             isExpand = false;
             ivExpand.setImageResource(R.drawable.ic_expand);

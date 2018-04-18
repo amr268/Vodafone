@@ -28,7 +28,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.task.vodafone"
-        minSdkVersion 15
+        minSdkVersion 17
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -46,8 +46,16 @@ android {
     }
 }
 
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':core')
 
     //android
     implementation "com.android.support:appcompat-v7:${support}"

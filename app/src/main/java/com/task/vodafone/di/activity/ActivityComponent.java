@@ -1,6 +1,6 @@
 package com.task.vodafone.di.activity;
 
-import com.task.vodafone.ui.HomeActivity;
+import com.task.vodafone.ui.home.HomeActivity;
 
 import dagger.Subcomponent;
 

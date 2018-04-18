@@ -15,14 +15,14 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
 @ActivityScope
-public class HomeRepo {
+public class BundleRepo {
 
     private final CompositeDisposable disposable;
     private final WebServicesStore webServicesStore;
     private final BundleMapper bundleMapper;
 
     @Inject
-    public HomeRepo(CompositeDisposable disposable, WebServicesStore webServicesStore, BundleMapper bundleMapper) {
+    public BundleRepo(CompositeDisposable disposable, WebServicesStore webServicesStore, BundleMapper bundleMapper) {
         this.disposable = disposable;
         this.webServicesStore = webServicesStore;
         this.bundleMapper = bundleMapper;

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.task.vodafone.ui.home.HomeScreen;
+
 import dagger.Module;
 import dagger.Provides;
 import io.reactivex.disposables.CompositeDisposable;
@@ -39,6 +41,12 @@ public class ActivityModule {
     @Provides
     FragmentManager provideFragmentManager() {
         return ((AppCompatActivity) activity).getSupportFragmentManager();
+    }
+
+    @ActivityScope
+    @Provides
+    HomeScreen provideHomeScreen() {
+        return (HomeScreen) activity;
     }
 
     @ActivityScope
