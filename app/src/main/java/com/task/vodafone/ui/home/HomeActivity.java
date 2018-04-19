@@ -48,4 +48,9 @@ public class HomeActivity extends BaseActivity implements HomeScreen {
         rvBundles.setLayoutManager(new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.VERTICAL, false));
         rvBundles.setAdapter(adapter);
     }
+
+    @Override
+    public void updateRecyclerPosition(int position) {
+        rvBundles.scrollToPosition(position);
+    }
 }

@@ -1,6 +1,7 @@
 package com.task.vodafone.ui.adapter_home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.task.vodafone.R;
+import com.task.vodafone.data.constant.Constant;
 import com.task.vodafone.data.models.bundle.BundleModel;
 
 import java.util.ArrayList;
@@ -48,6 +50,7 @@ public class GroupViewHolder extends RecyclerView.ViewHolder {
 
     @OnClick({R.id.iv_expand, R.id.cardView})
     public void onExpandClick(View view) {
+
         if (!isExpand) {
             isExpand = true;
             ivExpand.setImageResource(R.drawable.ic_collapse);
@@ -57,6 +60,9 @@ public class GroupViewHolder extends RecyclerView.ViewHolder {
             ivExpand.setImageResource(R.drawable.ic_expand);
             rvBundles.setVisibility(View.GONE);
         }
+        Intent intent = new Intent(Constant.ACTION_CHANGE_POSITION);
+        intent.putExtra(Constant.EXTRA_POSITION, getAdapterPosition());
+        context.sendBroadcast(intent);
     }
 
 }

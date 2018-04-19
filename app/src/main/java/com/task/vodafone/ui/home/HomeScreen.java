@@ -8,4 +8,5 @@ import java.util.HashMap;
 
 public interface HomeScreen extends BaseScreen {
     void updateUi(HashMap<String, ArrayList<BundleModel>> bundleModelsMap);
+    void updateRecyclerPosition(int position);
 }

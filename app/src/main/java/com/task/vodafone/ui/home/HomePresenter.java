@@ -1,29 +1,56 @@
 package com.task.vodafone.ui.home;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.util.Log;
 
 import com.amr.core.activity.BasePresenter;
+import com.cantrowitz.rxbroadcast.RxBroadcast;
 import com.task.vodafone.data.BundleRepo;
 import com.task.vodafone.data.ResultListener;
+import com.task.vodafone.data.constant.Constant;
 import com.task.vodafone.data.models.bundle.BundleModel;
 import com.task.vodafone.di.activity.ActivityScope;
+import com.task.vodafone.di.activity.ForActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+
 @ActivityScope
 public class HomePresenter extends BasePresenter {
 
-    private final HomeScreen homeScreen;
-    private final BundleRepo bundleRepo;
+    private HomeScreen homeScreen;
+    private BundleRepo bundleRepo;
+    private Context context;
+    private Disposable disposable;
 
     @Inject
-    protected HomePresenter(HomeScreen homeScreen, BundleRepo bundleRepo) {
+    protected HomePresenter(@ForActivity Context context, HomeScreen homeScreen, BundleRepo bundleRepo) {
         super(homeScreen);
         this.homeScreen = homeScreen;
         this.bundleRepo = bundleRepo;
+        this.context = context;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        disposable = getGlobalBroadcastObservable()
+                .subscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+                        homeScreen.updateRecyclerPosition(integer);
+                    }
+                });
     }
 
     @Override
@@ -36,6 +63,8 @@ public class HomePresenter extends BasePresenter {
     protected void onDestroy() {
         super.onDestroy();
         bundleRepo.onDestroy();
+        if (disposable != null)
+            disposable.dispose();
     }
 
     private void getBundles() {
@@ -53,5 +82,16 @@ public class HomePresenter extends BasePresenter {
                 homeScreen.showErrorMessage(t.getMessage());
             }
         });
+    }
+
+    @NonNull
+    private Observable<Integer> getGlobalBroadcastObservable() {
+        return RxBroadcast.fromBroadcast(context, new IntentFilter(Constant.ACTION_CHANGE_POSITION))
+                .map(new Function<Intent, Integer>() {
+                    @Override
+                    public Integer apply(Intent intent) {
+                        return intent.getIntExtra(Constant.EXTRA_POSITION, 0);
+                    }
+                });
     }
 }

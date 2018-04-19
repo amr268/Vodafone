@@ -12,6 +12,7 @@ ext {
     constrain = '1.1.0'
     rxAndroid = '2.0.2'
     rxJava = '2.1.12'
+    rxBroadcast = '2.0.0'
     dagger = '2.12'
     butterKnife = '8.8.1'
     retrofit = '2.4.0'
@@ -69,6 +70,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:${rxAndroid}"
     implementation "io.reactivex.rxjava2:rxjava:${rxJava}"
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
+    implementation "com.cantrowitz:rxbroadcast:${rxBroadcast}"
 
     //Binds views
     implementation "com.jakewharton:butterknife:${butterKnife}"
