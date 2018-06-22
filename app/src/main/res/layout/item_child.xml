@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.task.vodafone.custom_view.BundleView
+    <com.task.bundles.custom_view.BundleView
         android:id="@+id/bundle_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
